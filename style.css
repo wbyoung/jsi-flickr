@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
+  background: #efefef;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+img {
+  width: 150px;
+  height: 150px;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  float: left;
+}
+
+#photos {
+  margin: 0px auto;
+}
+
+#photos .error {
+  display: none;
+  width: 50%;
+  text-align: center;
+  margin: 2em auto;
+  font-size: 200%;
+  color: #75001e;
+}
+
+@media only screen and (min-width : 1200px) {
+  img:nth-of-type(8n+1) {
+    clear: both;
+  }
+  img {
+    margin-bottom: calc((100% - 150px * 8) / 9);
+    margin-left: calc((100% - 150px * 8) / 9);
+  }
+  body {
+    margin-top: calc((100% - 150px * 8) / 9);
+  }
+}
+
+@media only screen and (max-width : 1200px) {
+  img:nth-of-type(4n+1) {
+    clear: both;
+  }
+  img {
+    margin-bottom: calc((100% - 150px * 4) / 5);
+    margin-left: calc((100% - 150px * 4) / 5);
+  }
+  body {
+    margin-top: calc((100% - 150px * 4) / 5);
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  img:nth-of-type(2n+1) { clear: both; }
+
+  img {
+    margin-bottom: calc((100% - 150px * 2) / 3);
+    margin-left: calc((100% - 150px * 2) / 3);
+  }
+  body {
+    margin-top: calc((100% - 150px * 2) / 3);
+  }
+}
+
+@media only screen and (max-width : 300px) {
+  img:nth-of-type(1n+1) { clear: both; }
+
+  img {
+    margin-bottom: calc((100% - 150px * 1) / 2);
+    margin-left: calc((100% - 150px * 1) / 2);
+  }
+  body {
+    margin-top: calc((100% - 150px * 1) / 2);
+  }
+}
