@@ -2,7 +2,6 @@ var app = (function() {
   var loading = false;
   var pageNumber = 1;
 
-
   var displayPhotos = function(photos) {
     photos.forEach(function(photo) {
       var $a = $('<a>')
