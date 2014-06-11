@@ -1,10 +1,10 @@
 $.flickr = (function() {
-  var photoURL = function(photo) {
+  var photoURL = function(photo, type) {
     return 'https://farm' +
       photo.farm + '.staticflickr.com/' +
       photo.server + '/' +
       photo.id + '_' +
-      photo.secret + '_q.jpg';
+      photo.secret + '_' + type + '.jpg';
   };
 
   return {
@@ -25,7 +25,12 @@ $.flickr = (function() {
       })
       .then(function(data, status, xhr) {
         var photos = data.photos.photo.map(function(photo) {
-          return { url: photoURL(photo), _photo: photo };
+          return {
+            url: photoURL(photo, 'b'),
+            thumbnailURL: photoURL(photo, 'q'),
+            title: photo.title,
+            _photo: photo
+          };
         });
         dfd.resolve(photos, data.photos.pages);
       }, function(xhr, status, error) {

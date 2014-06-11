@@ -4,7 +4,12 @@ var app = (function() {
 
   var displayPhotos = function(photos) {
     photos.forEach(function(photo) {
-      $('<img>').attr('src', photo.url).appendTo('#photos');
+      var $a = $('<a>')
+        .addClass('image')
+        .attr('href', photo.url)
+        .appendTo('#photos');
+      $('<p>').text(photo.title).appendTo($a);
+      $('<img>').attr('src', photo.thumbnailURL).appendTo($a);
     });
   };
 

@@ -7,13 +7,38 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-img {
+a.image, img {
   width: 150px;
   height: 150px;
   margin: 0px;
   padding: 0px;
   display: block;
+  position: relative;
+}
+
+a.image {
   float: left;
+}
+
+a.image p {
+  display: none;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  margin: 0px;
+  padding: 10%;
+  z-index: 2;
+  background: rgba(0,0,0,0.2);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+a.image:hover {
+  color: #fff;
+}
+
+a.image:hover p {
+  display: block;
 }
 
 #photos {
@@ -30,10 +55,10 @@ img {
 }
 
 @media only screen and (min-width : 1200px) {
-  img:nth-of-type(8n+1) {
+  a.image:nth-of-type(8n+1) {
     clear: both;
   }
-  img {
+  a.image {
     margin-bottom: calc((100% - 150px * 8) / 9);
     margin-left: calc((100% - 150px * 8) / 9);
   }
@@ -43,10 +68,10 @@ img {
 }
 
 @media only screen and (max-width : 1200px) {
-  img:nth-of-type(4n+1) {
+  a.image:nth-of-type(4n+1) {
     clear: both;
   }
-  img {
+  a.image {
     margin-bottom: calc((100% - 150px * 4) / 5);
     margin-left: calc((100% - 150px * 4) / 5);
   }
@@ -56,9 +81,9 @@ img {
 }
 
 @media only screen and (max-width : 600px) {
-  img:nth-of-type(2n+1) { clear: both; }
+  a.image:nth-of-type(2n+1) { clear: both; }
 
-  img {
+  a.image {
     margin-bottom: calc((100% - 150px * 2) / 3);
     margin-left: calc((100% - 150px * 2) / 3);
   }
@@ -68,9 +93,9 @@ img {
 }
 
 @media only screen and (max-width : 300px) {
-  img:nth-of-type(1n+1) { clear: both; }
+  a.image:nth-of-type(1n+1) { clear: both; }
 
-  img {
+  a.image {
     margin-bottom: calc((100% - 150px * 1) / 2);
     margin-left: calc((100% - 150px * 1) / 2);
   }
