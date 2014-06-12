@@ -8,7 +8,7 @@ $.flickr = (function() {
   };
 
   return {
-    loadInteresting: function(page, successCallback, errorCallback) {
+    loadInteresting: function(page) {
       var dfd = new $.Deferred();
       var url = 'http://api.flickr.com/services/rest/';
       var params = {
