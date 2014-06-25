@@ -46,8 +46,15 @@ a.image:hover p {
   margin: 0px auto;
 }
 
+#photos .loading {
+  width: 50%;
+  text-align: center;
+  margin: 2em auto;
+  font-size: 200%;
+  color: #555;
+}
+
 #photos .error {
-  display: none;
   width: 50%;
   text-align: center;
   margin: 2em auto;

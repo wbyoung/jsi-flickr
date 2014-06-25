@@ -5,14 +5,30 @@
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div id="photos">
+<script type="text/x-handlebars">
+  <div id="photos">{{outlet}}</div>
+</script>
+<script type="text/x-handlebars" data-template-name="index">
+  {{#each}}
+  <a class="image" {{bind-attr href=url}}>
+    <p>{{title}}</p>
+    <img {{bind-attr src=thumbnailURL}}>
+  </a>
+  {{/each}}
+</script>
+<script type="text/x-handlebars" data-template-name="loading">
+  <p class="loading">
+    Loading up some images.
+  </p>
+</script>
+<script type="text/x-handlebars" data-template-name="error">
   <p class="error">
     There was an error accessing Flickr. Please try again later.
   </p>
-</div>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="jquery.infinite.js"></script>
-<script type="text/javascript" src="jquery.flickr.js"></script>
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v1.3.0.js"></script>
+<script type="text/javascript" src="http://builds.emberjs.com/tags/v1.5.1/ember.js"></script>
 <script type="text/javascript" src="application.js"></script>
 </body>
 </html>

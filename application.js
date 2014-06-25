@@ -1,52 +1,35 @@
-(function() {
-  'use strict';
+window.FlickrApp = Ember.Application.create();
 
-  var app = (function() {
-    var loading = false;
-    var pageNumber = 1;
+var photoURL = function(photo, type) {
+  return 'https://farm' +
+    photo.farm + '.staticflickr.com/' +
+    photo.server + '/' +
+    photo.id + '_' +
+    photo.secret + '_' + type + '.jpg';
+};
 
-    var displayPhotos = function(photos) {
-      photos.forEach(function(photo) {
-        var $a = $('<a>')
-          .addClass('image')
-          .attr('href', photo.url)
-          .appendTo('#photos');
-        $('<p>').text(photo.title).appendTo($a);
-        $('<img>').attr('src', photo.thumbnailURL).appendTo($a);
+FlickrApp.IndexRoute = Ember.Route.extend({
+  model: function() {
+    var url = 'http://api.flickr.com/services/rest/';
+    var params = {
+      method: 'flickr.interestingness.getList',
+      api_key: 'f40bc3eb64e080641d1c2a83103de6d8',
+      format: 'json',
+      per_page: 80
+    };
+    return $.ajax(url, {
+      data: params,
+      dataType: 'jsonp',
+      jsonp: 'jsoncallback'
+    }).then(function(data, status, xhr) {
+      return data.photos.photo.map(function(photo) {
+        return {
+          url: photoURL(photo, 'b'),
+          thumbnailURL: photoURL(photo, 'q'),
+          title: photo.title,
+          _photo: photo
+        };
       });
-    };
-
-    var displayError = function() {
-      $('#photos img').remove();
-      $('#photos .error').show();
-    };
-
-    var loadPhotos = function() {
-      if (loading) { return; }
-      loading = true;
-      $.flickr.loadInteresting(pageNumber)
-      .then(function(photos, pageCount) {
-        if (pageNumber >= pageCount) {
-          $.infinite.remove('flickr-app');
-        }
-        pageNumber += 1;
-        loading = false;
-        displayPhotos(photos);
-      }, function(error) {
-        $.infinite.remove('flickr-app');
-        loading = false;
-        displayError();
-      });
-    };
-
-    return {
-      run: function() {
-        loadPhotos();
-        $.infinite.add('flickr-app', loadPhotos);
-      }
-    }
-  })();
-
-  $(app.run);
-
-})();
+    });
+  }
+});
