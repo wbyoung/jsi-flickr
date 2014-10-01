@@ -10,7 +10,7 @@ $.flickr = (function() {
   return {
     loadInteresting: function(page) {
       var dfd = new $.Deferred();
-      var url = 'http://api.flickr.com/services/rest/';
+      var url = 'https://api.flickr.com/services/rest/';
       var params = {
         method: 'flickr.interestingness.getList',
         api_key: 'f40bc3eb64e080641d1c2a83103de6d8',
