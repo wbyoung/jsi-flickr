@@ -14,14 +14,14 @@ $.flickr = (function() {
       var params = {
         method: 'flickr.interestingness.getList',
         api_key: 'f40bc3eb64e080641d1c2a83103de6d8',
+        nojsoncallback: 1,
         format: 'json',
         per_page: 80,
         page: page
       };
       $.ajax(url, {
         data: params,
-        dataType: 'jsonp',
-        jsonp: 'jsoncallback'
+        dataType: 'json'
       })
       .then(function(data, status, xhr) {
         var photos = data.photos.photo.map(function(photo) {
